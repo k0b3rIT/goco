@@ -4,6 +4,7 @@ import "fmt"
 
 type List[T comparable] interface {
 	Add(e T)
+	AddAll(e ...T)
 	Remove(e T)
 	Contains(e T) bool
 	IsEmpty() bool
@@ -28,6 +29,10 @@ func (l *list[T]) String() string {
 
 func (l *list[T]) Add(e T) {
 	l.elements = append(l.elements, e)
+}
+
+func (l *list[T]) AddAll(e ...T) {
+	l.elements = append(l.elements, e...)
 }
 
 func (l *list[T]) Remove(e T) {

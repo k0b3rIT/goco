@@ -4,6 +4,7 @@ import "fmt"
 
 type Set[T comparable] interface {
 	Add(e T)
+	AddAll(e ...T)
 	Remove(e T)
 	Contains(e T) bool
 	IsEmpty() bool
@@ -26,6 +27,12 @@ func (s *set[T]) String() string {
 
 func (s *set[T]) Add(e T) {
 	s.elements[e] = e
+}
+
+func (s *set[T]) AddAll(e ...T) {
+	for _, v := range e {
+		s.elements[v] = v
+	}
 }
 
 func (s *set[T]) Remove(e T) {
