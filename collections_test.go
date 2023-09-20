@@ -31,3 +31,19 @@ func TestList(t *testing.T) {
 		t.Errorf("got %q, wanted %q", l.Size(), 0)
 	}
 }
+
+func TestToMap(t *testing.T) {
+	l := NewList[Car](Car{"bmw", "x5"}, Car{"audi", "a4"}, Car{"mercedes", "c180"})
+	lmap := ListToMap[Car](l, func(c Car) string { return c.Brand })
+
+	if !SlicesHasTheSameElements[string](lmap.Keys(), []string{"bmw", "audi", "mercedes"}) {
+		t.Errorf("got %q, wanted %q", lmap.Keys(), []string{"bmw", "audi", "mercedes"})
+	}
+
+	lmap.Remove("bmw")
+
+	if !SlicesHasTheSameElements[string](lmap.Keys(), []string{"audi", "mercedes"}) {
+		t.Errorf("got %q, wanted %q", lmap.Keys(), []string{"audi", "mercedes"})
+	}
+
+}

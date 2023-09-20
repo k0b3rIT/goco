@@ -2,11 +2,23 @@ package goco
 
 import "fmt"
 
+type List[T comparable] interface {
+	Add(e T)
+	Remove(e T)
+	Contains(e T) bool
+	IsEmpty() bool
+	Size() int
+	Get(i int) *T
+	SafeGet(i int) (*T, error)
+	Clear()
+	ToSlice() []T
+}
+
 type list[T comparable] struct {
 	elements []T
 }
 
-func NewList[T comparable](e... T) *list[T] {
+func NewList[T comparable](e ...T) *list[T] {
 	return &list[T]{e}
 }
 
@@ -43,12 +55,12 @@ func (l *list[T]) Size() int {
 	return len(l.elements)
 }
 
-func (l *list[T]) Get(i int) (*T) {
+func (l *list[T]) Get(i int) *T {
 	return &l.elements[i]
 }
 
 func (l *list[T]) SafeGet(i int) (*T, error) {
-	if (l.IsEmpty() || i >= l.Size()) {
+	if l.IsEmpty() || i >= l.Size() {
 		return nil, fmt.Errorf("index out of bounds")
 	}
 	return &l.elements[i], nil
@@ -56,4 +68,8 @@ func (l *list[T]) SafeGet(i int) (*T, error) {
 
 func (l *list[T]) Clear() {
 	l.elements = nil
+}
+
+func (l *list[T]) ToSlice() []T {
+	return l.elements
 }

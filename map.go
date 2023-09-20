@@ -2,8 +2,20 @@ package goco
 
 import "fmt"
 
+type Map[K comparable, V any] interface {
+	Put(k K, v V)
+	Remove(k K)
+	ContainsKey(k K) bool
+	Keys() []K
+	Clear()
+}
+
 type simpleMap[K comparable, V any] struct {
 	elements map[K]V
+}
+
+func NewMapFrom[K comparable, V any](elements map[K]V) *simpleMap[K, V] {
+	return &simpleMap[K, V]{elements}
 }
 
 func NewMap[K comparable, V any]() *simpleMap[K, V] {
