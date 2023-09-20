@@ -6,6 +6,7 @@ type Map[K comparable, V any] interface {
 	Put(k K, v V)
 	Remove(k K)
 	ContainsKey(k K) bool
+	Get(k K) *V
 	Keys() []K
 	Clear()
 }
@@ -41,6 +42,14 @@ func (m *simpleMap[K, V]) Remove(k K) {
 func (m *simpleMap[K, V]) ContainsKey(k K) bool {
 	_, ok := m.elements[k]
 	return ok
+}
+
+func (m *simpleMap[K, V]) Get(k K) *V {
+	e, ok := m.elements[k]
+	if !ok {
+		return nil
+	}
+	return &e
 }
 
 func (m *simpleMap[K, V]) Keys() []K {

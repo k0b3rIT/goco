@@ -2,12 +2,20 @@ package goco
 
 import "golang.org/x/exp/slices"
 
-func SliceToMap[T any, V comparable](src []T, key func(T) V) map[V]T {
+func SliceTomap[T any, V comparable](src []T, key func(T) V) map[V]T {
 	var result = make(map[V]T)
 	for _, v := range src {
 		result[key(v)] = v
 	}
 	return result
+}
+
+func SliceToMap[T any, V comparable](src []T, key func(T) V) *simpleMap[V, T] {
+	var result = make(map[V]T)
+	for _, v := range src {
+		result[key(v)] = v
+	}
+	return NewMapFrom[V, T](result)
 }
 
 func ListToMap[T comparable, V comparable](src List[T], key func(T) V) *simpleMap[V, T] {
