@@ -2,8 +2,6 @@ package goco
 
 import (
 	"testing"
-
-	collections "github.com/k0b3rIT/goco"
 )
 
 type Car struct {
@@ -13,7 +11,7 @@ type Car struct {
 
 func TestList(t *testing.T) {
 
-	l := collections.NewList[Car](Car{"bmw", "x5"}, Car{"audi", "a4"}, Car{"mercedes", "c180"})
+	l := NewList[Car](Car{"bmw", "x5"}, Car{"audi", "a4"}, Car{"mercedes", "c180"})
 
 	l.Add(Car{"volkswagen", "golf"})
 
