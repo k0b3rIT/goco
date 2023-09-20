@@ -1,5 +1,11 @@
-GOCO
+GOCO 🤖 
 =========
+
+GOCOllections framework
+
+![GitHub tag (with filter)](https://img.shields.io/github/v/tag/k0b3rIT/goco)
+[![Repo stars](https://img.shields.io/github/stars/k0b3rIT/goco?style=social)](https://github.com/k0b3rIT/goco)
+[![Repo forks](https://img.shields.io/github/forks/k0b3rIT/goco?style=social)](https://github.com/k0b3rIT/goco)
 
 Go-collections framework is a set of packages that extend the Go standard library to provide a more complete, convenient and powerful set of data structures.
 (Go list, Go set, Go map, Go collections) (Java collections for Go)
